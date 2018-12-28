@@ -1,0 +1,29 @@
+{
+  "name": "mofron-comp-bdritem",
+  "version": "0.0.1",
+  "description": "border menu item component for mofron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simpart/mofron-comp-bdritem.git"
+  },
+  "dependencies": {
+     "mofron-comp-text" : "",
+     "mofron-comp-menuitem" : "",
+     "mofron-effect-color" : "",
+     "mofron-effect-border" : "",
+     "mofron-event-hover" : ""
+  },
+  "keywords": [
+    "front-end"
+  ],
+  "author": "simparts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simpart/mofron-comp-bdritem/issues"
+  },
+  "homepage": "https://github.com/simpart/mofron-comp-bdritem#readme"
+}
