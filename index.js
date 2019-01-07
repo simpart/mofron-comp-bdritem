@@ -38,6 +38,7 @@ mf.comp.BdrItem = class extends MenuItem {
             this.addChild(this.text());
             /* init config */
             this.effect([this.border()]);
+            this.type('left');
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -57,13 +58,14 @@ mf.comp.BdrItem = class extends MenuItem {
             if ('string' === typeof prm) {
                 this.text().execOption({
                     text  : prm,
-                    style : [{'padding-left': '0.15rem'}, true]
                 });
                 return;
             } else if (true === mf.func.isComp(prm, 'Text')) {
                 prm.execOption({
                     event : [
-                        new Hover({ kickEffect : new efColor(['#000000', null]) })
+                        new Hover({
+                            kickEffect : new efColor([prm.mainColor(), prm.mainColor()])
+                        })
                     ]
                 });
             }
@@ -88,6 +90,40 @@ mf.comp.BdrItem = class extends MenuItem {
         }
     }
     
+    type (prm, pad) {
+        try {
+            if (undefined === prm) {
+                /* getter */
+                return this.border().type();
+            }
+            /* setter */
+            this.border().execOption({ type : prm });
+            
+            if ('all' !== prm) {
+                /* reset padding */
+                this.text().execOption({
+                    style : {
+                        'padding-left'   : null,
+                        'padding-right'  : null,
+                        'padding-top'    : null,
+                        'padding-bottom' : null
+                    }
+                });
+                /* set padding */
+                let set_style = {};
+                set_style['padding-'+prm] = (undefined === pad) ? '0.05rem' : pad;
+                this.text().execOption({ style:set_style });
+            } else {
+                let set_style = {};
+                set_style['padding-'+prm] = (undefined === pad) ? '0.05rem' : pad;
+                this.text().execOption({ style:set_style });
+            }
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
     /**
      * border setter/getter
      *
@@ -101,12 +137,7 @@ mf.comp.BdrItem = class extends MenuItem {
                 'border',
                 ['Effect','Border'],
                 prm,
-                new Border({
-                    type    : 'left',
-                    width   : '0.03rem',
-                    status  : false,
-                    suspend : [false, false]
-                })
+                new Border({ type:'left', width:'0.03rem', status:false, suspend:[false, false] })
             );
         } catch (e) {
             console.error(e.stack);
